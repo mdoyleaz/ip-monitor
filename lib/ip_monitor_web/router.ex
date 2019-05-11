@@ -5,7 +5,12 @@ defmodule IPMonitorWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", IPMonitorWeb do
+  scope "/", IPMonitorWeb do
     pipe_through :api
+
+    scope "/hosts" do
+      get("/", HostController, :index)
+      post("/", HostController, :create)
+    end
   end
 end
