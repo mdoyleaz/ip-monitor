@@ -1,6 +1,8 @@
 defmodule Hosts.Projectors.HostHandler do
   use Commanded.Event.Handler, name: "Hosts.Projectors.HostHandler", start_from: :current
 
+  require Logger
+
   alias Hosts.Events.HostCreated
   alias Hosts.Projections.Host
   alias IPMonitor.Repo
@@ -16,7 +18,8 @@ defmodule Hosts.Projectors.HostHandler do
   end
 
   def error(error, _failed_event, context) do
-    IO.puts("Error")
+    Logger.warn(inspect(error, label: "Hosts.Projectors.HostHandler"))
+    Logger.warn(inspect(context, label: "context"))
     :skip
   end
 end
