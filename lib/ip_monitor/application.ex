@@ -11,9 +11,10 @@ defmodule IPMonitor.Application do
       # Start the Ecto repository
       IPMonitor.Repo,
       # Start the endpoint when the application starts
-      IPMonitorWeb.Endpoint
+      IPMonitorWeb.Endpoint,
       # Starts a worker by calling: IPMonitor.Worker.start_link(arg)
       # {IPMonitor.Worker, arg},
+      Hosts.Supervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
